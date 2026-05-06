@@ -8,6 +8,35 @@ class Pengajuan_surat_model extends CI_Model {
         return $this->db->insert('pengajuan_surat_sakit', $data);
     }
 
+    public function insert_surat_pegawai($data)
+    {
+        $this->db->insert('surat_pegawai', $data);
+
+        return $this->db->insert_id();
+    }
+
+    public function get_surat_pegawai_by_nip($nip)
+    {
+        $this->db->select('surat_pegawai.*, penandatangan.nama AS penandatangan_nama');
+        $this->db->from('surat_pegawai');
+        $this->db->join('pegawai AS penandatangan', 'penandatangan.nip = surat_pegawai.penandatangan_nip', 'left');
+        $this->db->where('surat_pegawai.nip', $nip);
+        $this->db->order_by('surat_pegawai.created_at', 'DESC');
+
+        return $this->db->get()->result();
+    }
+
+    public function get_surat_pegawai_detail($id, $nip)
+    {
+        $this->db->select('surat_pegawai.*, penandatangan.nama AS penandatangan_nama');
+        $this->db->from('surat_pegawai');
+        $this->db->join('pegawai AS penandatangan', 'penandatangan.nip = surat_pegawai.penandatangan_nip', 'left');
+        $this->db->where('surat_pegawai.id', (int) $id);
+        $this->db->where('surat_pegawai.nip', $nip);
+
+        return $this->db->get()->row();
+    }
+
     public function get_all_surat_masuk()
     {
         $this->db->select('pengajuan_surat_sakit.*, pegawai.nama');

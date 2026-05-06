@@ -378,6 +378,12 @@
                                 <span>Surat Keterangan Sakit</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= site_url('pengajuan_surat/download_surat') ?>" class="<?= ($this->uri->segment(1) == 'pengajuan_surat' && $this->uri->segment(2) == 'download_surat') ? 'active' : '' ?>">
+                                <i class="fas fa-file-download"></i>
+                                <span>Download Surat</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

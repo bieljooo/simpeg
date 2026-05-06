@@ -100,6 +100,22 @@ CREATE TABLE `pengajuan_surat_sakit` (
   KEY `idx_pengajuan_surat_sakit_nomor_surat` (`nomor_surat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `surat_pegawai` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `jenis` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `tanggal_surat` date NOT NULL,
+  `tanggal_izin` date NOT NULL,
+  `alasan` text COLLATE utf8mb4_general_ci NOT NULL,
+  `penandatangan_nip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_surat_pegawai_nip` (`nip`),
+  KEY `idx_surat_pegawai_penandatangan` (`penandatangan_nip`),
+  KEY `idx_surat_pegawai_tanggal_surat` (`tanggal_surat`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,

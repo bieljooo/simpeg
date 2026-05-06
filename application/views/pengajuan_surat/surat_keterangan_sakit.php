@@ -8,6 +8,7 @@
 </nav>
 
 <?php $p = $pegawai; ?>
+<?php $ttd = $penandatangan; ?>
 
 <div class="card">
     <div class="card-header">
@@ -22,6 +23,10 @@
                 <h5 style="margin:0;color:#2d3748;font-weight:700"><?= $p->nama ?></h5>
                 <span style="color:#718096;font-size:14px">NIP: <?= $p->nip ?></span>
             </div>
+        </div>
+
+        <div class="mb-4 p-3" style="background:#ebf8ff;border-radius:8px;border-left:4px solid #63b3ed;color:#2c5282">
+            Setelah surat dibuat, file PDF bisa langsung diunduh pada menu <strong>Download Surat</strong>.
         </div>
 
         <form action="<?= site_url('pengajuan_surat/simpan_surat_keterangan_sakit') ?>" method="POST">
@@ -63,7 +68,8 @@
 
             <div class="form-group">
                 <label>Penandatangan <span class="text-danger">*</span></label>
-                <input type="text" name="penandatangan" class="form-control" required>
+                <input type="hidden" name="penandatangan_nip" value="<?= htmlspecialchars($ttd->nip, ENT_QUOTES, 'UTF-8') ?>">
+                <input type="text" class="form-control" value="<?= htmlspecialchars($ttd->nama, ENT_QUOTES, 'UTF-8') ?>" readonly style="background:#edf2f7">
             </div>
 
             <hr>
@@ -72,7 +78,7 @@
                     <i class="fas fa-arrow-left mr-1"></i> Kembali
                 </a>
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane mr-1"></i> Kirim Pengajuan
+                    <i class="fas fa-file-pdf mr-1"></i> Buat Surat
                 </button>
             </div>
         </form>
