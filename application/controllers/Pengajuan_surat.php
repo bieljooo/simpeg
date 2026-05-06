@@ -92,6 +92,16 @@ class Pengajuan_surat extends CI_Controller {
 
     public function unduh_surat_keterangan_sakit($id)
     {
+        $this->output_surat_keterangan_sakit_pdf($id, TRUE);
+    }
+
+    public function preview_surat_keterangan_sakit($id)
+    {
+        $this->output_surat_keterangan_sakit_pdf($id, FALSE);
+    }
+
+    private function output_surat_keterangan_sakit_pdf($id, $is_download)
+    {
         $nip = $this->session->userdata('nip');
         $surat = $this->Pengajuan_surat_model->get_surat_pegawai_detail($id, $nip);
 
@@ -117,6 +127,7 @@ class Pengajuan_surat extends CI_Controller {
         $view_data = array(
             'header_lines' => $template['header_lines'],
             'logo_data_uri' => $template['logo_data_uri'],
+            'nomor_surat' => $this->build_nomor_surat($surat->tanggal_surat),
             'pegawai' => $pegawai,
             'penandatangan' => $penandatangan,
             'surat' => $surat,
@@ -135,7 +146,9 @@ class Pengajuan_surat extends CI_Controller {
         $dompdf->loadHtml($html, 'UTF-8');
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('surat-keterangan-sakit-' . $surat->id . '.pdf', array('Attachment' => TRUE));
+        $dompdf->stream('surat-keterangan-sakit-' . $surat->id . '.pdf', array(
+            'Attachment' => (bool) $is_download,
+        ));
     }
 
     private function is_valid_date($date)
@@ -182,6 +195,32 @@ class Pengajuan_surat extends CI_Controller {
         }
 
         return $prefix . $this->format_tanggal_indonesia($tanggal_izin) . ' karena ' . rtrim($alasan, " .") . '.';
+    }
+
+    private function build_nomor_surat($tanggal_surat)
+    {
+        $date_time = DateTime::createFromFormat('Y-m-d', $tanggal_surat);
+
+        if (!$date_time) {
+            return '/Sket/DPMPTSPD/III/2026';
+        }
+
+        $bulan_romawi = array(
+            1 => 'I',
+            'II',
+            'III',
+            'IV',
+            'V',
+            'VI',
+            'VII',
+            'VIII',
+            'IX',
+            'X',
+            'XI',
+            'XII',
+        );
+
+        return '/Sket/DPMPTSPD/' . $bulan_romawi[(int) $date_time->format('n')] . '/' . $date_time->format('Y');
     }
 
     private function get_template_assets()

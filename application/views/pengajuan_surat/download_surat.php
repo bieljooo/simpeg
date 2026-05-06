@@ -40,7 +40,7 @@
                         <th>Tanggal Izin</th>
                         <th>Penandatangan</th>
                         <th>Dibuat</th>
-                        <th style="width:120px">Aksi</th>
+                        <th style="width:150px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,6 +61,9 @@
                                 <td><?= htmlspecialchars($item->penandatangan_nama ?: '-', ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><?= $item->created_at ? date('d/m/Y H:i', strtotime($item->created_at)) : '-' ?></td>
                                 <td class="text-center">
+                                    <a href="<?= site_url('pengajuan_surat/preview_surat_keterangan_sakit/' . $item->id) ?>" class="btn btn-info btn-sm" title="Preview PDF" target="_blank">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                     <a href="<?= site_url('pengajuan_surat/unduh_surat_keterangan_sakit/' . $item->id) ?>" class="btn btn-primary btn-sm" title="Unduh PDF">
                                         <i class="fas fa-download"></i>
                                     </a>

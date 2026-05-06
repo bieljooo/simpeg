@@ -15,20 +15,24 @@ $format_nip = function ($nip) {
     <meta charset="utf-8">
     <title>Surat Keterangan Sakit</title>
     <style>
+        @page {
+            margin: 21pt 35pt 10pt 72pt;
+        }
+
         body {
-            font-family: DejaVu Sans, sans-serif;
-            font-size: 12px;
-            color: #111;
-            line-height: 1.45;
+            font-family: Helvetica, DejaVu Sans, sans-serif;
+            font-size: 11pt;
+            color: #000;
+            line-height: 1.15;
             margin: 0;
         }
 
         .page {
-            padding: 28px 34px 24px;
+            margin: 0;
         }
 
         .kop {
-            margin-bottom: 10px;
+            margin-bottom: 2px;
         }
 
         .kop-table {
@@ -41,24 +45,25 @@ $format_nip = function ($nip) {
         }
 
         .kop-logo {
-            width: 70px;
+            width: 94px;
             padding-top: 2px;
         }
 
         .kop-logo img {
-            width: 56px;
+            width: 88px;
             height: auto;
+            margin-left: -10px;
         }
 
         .kop-text {
             text-align: center;
-            padding-right: 38px;
+            padding-right: 4px;
         }
 
         .kop-line {
-            border-bottom: 3px solid #000;
-            margin-top: 8px;
-            margin-bottom: 18px;
+            border-bottom: 2.25pt solid #000;
+            margin-top: 5px;
+            margin-bottom: 12px;
         }
 
         .kop h1,
@@ -69,8 +74,9 @@ $format_nip = function ($nip) {
         }
 
         .kop h1 {
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 13pt;
+            font-weight: 400;
+            letter-spacing: 0.1px;
         }
 
         .kop h2 {
@@ -84,41 +90,45 @@ $format_nip = function ($nip) {
         }
 
         .kop p {
-            font-size: 10px;
+            font-size: 9pt;
         }
 
         .title {
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 10px;
         }
 
         .title h4 {
             margin: 0;
-            font-size: 15px;
+            font-size: 11pt;
             text-decoration: underline;
-            font-family: DejaVu Serif, serif;
+            font-family: Helvetica, DejaVu Sans, sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.3px;
         }
 
         .title p {
-            margin: 2px 0 0;
+            margin: 1px 0 0;
+            font-weight: 700;
         }
 
         .lead {
-            margin: 0 0 10px;
+            margin: 0 0 3px;
         }
 
         .detail-table {
             border-collapse: collapse;
-            margin-bottom: 12px;
+            margin-bottom: 4px;
+            margin-left: 56px;
         }
 
         .detail-table td {
-            padding: 1px 0;
+            padding: 0;
             vertical-align: top;
         }
 
         .detail-table .label {
-            width: 145px;
+            width: 132px;
         }
 
         .detail-table .colon {
@@ -127,23 +137,48 @@ $format_nip = function ($nip) {
 
         .paragraph {
             text-align: justify;
-            margin: 10px 0;
-            text-indent: 32px;
+            margin: 8px 0;
         }
 
-        .signature {
-            width: 265px;
-            margin-left: auto;
-            margin-top: 20px;
+        .body-text {
+            margin-left: 56px;
+            margin-right: 6px;
+        }
+
+        .body-spacing {
+            height: 5px;
+        }
+
+        .signature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .signature-table td {
+            vertical-align: top;
+        }
+
+        .signature-left {
+            width: 49%;
+        }
+
+        .signature-right {
+            width: 51%;
+            text-align: center;
         }
 
         .signature-space {
-            height: 62px;
+            height: 76px;
         }
 
-        .signature strong {
-            display: block;
+        .signature-name {
             text-decoration: underline;
+            font-weight: 400;
+        }
+
+        .signature-line {
+            margin: 0;
         }
     </style>
 </head>
@@ -171,7 +206,7 @@ $format_nip = function ($nip) {
 
         <div class="title">
             <h4>SURAT KETERANGAN</h4>
-            <p>Nomor : </p>
+            <p>Nomor : <?= htmlspecialchars($nomor_surat, ENT_QUOTES, 'UTF-8') ?></p>
         </div>
 
         <p class="lead">Yang bertanda tangan dibawah ini :</p>
@@ -199,6 +234,7 @@ $format_nip = function ($nip) {
             </tr>
         </table>
 
+        <div class="body-spacing"></div>
         <p class="lead">Menerangkan</p>
 
         <table class="detail-table">
@@ -219,17 +255,26 @@ $format_nip = function ($nip) {
             </tr>
         </table>
 
-        <p class="paragraph"><?= htmlspecialchars($kalimat_surat, ENT_QUOTES, 'UTF-8') ?></p>
-        <p class="paragraph">Demikian surat keterangan ini dibuat untuk digunakan seperlunya.</p>
-
-        <div class="signature">
-            <div>Tomohon, <?= htmlspecialchars($tanggal_surat_indonesia, ENT_QUOTES, 'UTF-8') ?></div>
-            <div><?= htmlspecialchars($penandatangan->jabatan ?: '-', ENT_QUOTES, 'UTF-8') ?></div>
-            <div class="signature-space"></div>
-            <strong><?= htmlspecialchars($penandatangan->nama, ENT_QUOTES, 'UTF-8') ?></strong>
-            <div><?= htmlspecialchars($penandatangan->pangkat_terakhir ?: '-', ENT_QUOTES, 'UTF-8') ?></div>
-            <div>NIP. <?= htmlspecialchars($format_nip($penandatangan->nip), ENT_QUOTES, 'UTF-8') ?></div>
+        <div class="body-spacing"></div>
+        <div class="body-text">
+            <p class="paragraph"><?= htmlspecialchars($kalimat_surat, ENT_QUOTES, 'UTF-8') ?></p>
+            <p class="paragraph">Demikian surat keterangan ini dibuat untuk digunakan seperlunya.</p>
         </div>
+
+        <table class="signature-table">
+            <tr>
+                <td class="signature-left"></td>
+                <td class="signature-right">
+                    <p class="signature-line">Tomohon, <?= htmlspecialchars($tanggal_surat_indonesia, ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="signature-line">Kasubag Umum Perencanaan,</p>
+                    <p class="signature-line">Kepegawaian &amp; Hukum</p>
+                    <div class="signature-space"></div>
+                    <p class="signature-line signature-name"><?= htmlspecialchars($penandatangan->nama, ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="signature-line"><?= htmlspecialchars($penandatangan->pangkat_terakhir ?: '-', ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="signature-line">NIP. <?= htmlspecialchars($format_nip($penandatangan->nip), ENT_QUOTES, 'UTF-8') ?></p>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
