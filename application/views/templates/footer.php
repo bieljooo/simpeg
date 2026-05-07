@@ -17,11 +17,19 @@
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?= base_url('assets/js/simpeg-shell.js') ?>"></script>
 
 <script>
     // Init DataTables
     $(document).ready(function() {
-        $('#dataTable').DataTable({
+        var $table = $('#dataTable');
+
+        if (!$table.length) {
+            return;
+        }
+
+        $table.DataTable({
+            "searching": false,
             "language": {
                 "search": "Cari:",
                 "lengthMenu": "Tampilkan _MENU_ data",
@@ -37,7 +45,9 @@
                 }
             },
             "pageLength": 10,
-            "responsive": true
+            "responsive": !$table.hasClass('table-pegawai-full'),
+            "scrollX": $table.hasClass('table-pegawai-full'),
+            "autoWidth": false
         });
     });
 

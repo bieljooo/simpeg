@@ -79,6 +79,13 @@ class Pegawai_model extends CI_Model {
         return $this->db->count_all('pegawai');
     }
 
+    public function count_by_gender($jenis_kelamin)
+    {
+        return (int) $this->db
+            ->where('jenis_kelamin', $jenis_kelamin)
+            ->count_all_results('pegawai');
+    }
+
     public function nip_exists($nip)
     {
         return $this->db->where('nip', $nip)->count_all_results('pegawai') > 0;
