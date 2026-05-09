@@ -67,8 +67,8 @@
             html: 'Anda yakin ingin menghapus data <strong>' + nama + '</strong>?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#e53e3e',
-            cancelButtonColor: '#a0aec0',
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#f87171',
             confirmButtonText: 'Ya, Hapus!',
             cancelButtonText: 'Batal'
         }).then((result) => {
@@ -84,8 +84,8 @@
             html: 'Setujui data pegawai <strong>' + nama + '</strong>?',
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#38a169',
-            cancelButtonColor: '#a0aec0',
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#f87171',
             confirmButtonText: 'Ya, Setujui!',
             cancelButtonText: 'Batal'
         }).then((result) => {
@@ -101,8 +101,8 @@
             html: 'Tolak data pegawai <strong>' + nama + '</strong>?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#f2aa3b',
-            cancelButtonColor: '#a0aec0',
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#f87171',
             confirmButtonText: 'Ya, Tolak!',
             cancelButtonText: 'Batal'
         }).then((result) => {

@@ -71,7 +71,7 @@
                             <td><?= $item->tingkat_pendidikan ?: '-' ?></td>
                             <td class="text-center">
                                 <div class="table-action-group">
-                                    <a href="<?= site_url('persetujuan_pegawai/detail/' . $item->id) ?>" class="btn btn-info btn-sm" title="View">
+                                    <a href="<?= site_url('persetujuan_pegawai/detail/' . $item->id) ?>" class="btn btn-action-read btn-sm" title="View">
                                         <iconify-icon icon="mdi:eye-outline"></iconify-icon>
                                     </a>
                                     <form id="approve-form-<?= $item->id ?>" action="<?= site_url('persetujuan_pegawai/setujui/' . $item->id) ?>" method="POST" style="display:inline">

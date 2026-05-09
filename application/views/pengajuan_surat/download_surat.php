@@ -64,7 +64,7 @@
                                 <td><?= $item->created_at ? date('d/m/Y H:i', strtotime($item->created_at)) : '-' ?></td>
                                 <td class="text-center">
                                     <div class="table-action-group">
-                                        <a href="<?= site_url('pengajuan_surat/preview_surat_keterangan_sakit/' . $item->id) ?>" class="btn btn-info btn-sm" title="View" target="_blank" rel="noopener">
+                                        <a href="<?= site_url('pengajuan_surat/preview_surat_keterangan_sakit/' . $item->id) ?>" class="btn btn-action-read btn-sm" title="View" target="_blank" rel="noopener">
                                             <iconify-icon icon="mdi:eye-outline"></iconify-icon>
                                         </a>
                                         <a href="<?= site_url('pengajuan_surat/unduh_surat_keterangan_sakit/' . $item->id) ?>" class="btn btn-primary btn-sm" title="Unduh Word" data-no-transition target="suratDownloadFrame">
@@ -72,7 +72,7 @@
                                         </a>
                                         <button
                                             type="button"
-                                            class="btn btn-danger btn-sm"
+                                            class="btn btn-action-delete btn-sm"
                                             title="Hapus"
                                             onclick="confirmDeleteSurat('<?= site_url('pengajuan_surat/hapus_surat_keterangan_sakit/' . $item->id) ?>', 'Surat Keterangan Sakit tanggal <?= $item->tanggal_surat ? date('d/m/Y', strtotime($item->tanggal_surat)) : '-' ?>')">
                                             <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>

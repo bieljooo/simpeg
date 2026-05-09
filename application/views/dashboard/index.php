@@ -13,7 +13,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h3><iconify-icon icon="mdi:account-outline" class="mr-2"></iconify-icon>Data Diri Pegawai</h3>
-        <a href="<?= site_url('dashboard/edit') ?>" class="btn btn-warning btn-sm">
+        <a href="<?= site_url('dashboard/edit') ?>" class="btn btn-action-edit btn-sm">
             <iconify-icon icon="mdi:pencil-outline" class="mr-1"></iconify-icon> Edit Data Diri
         </a>
     </div>

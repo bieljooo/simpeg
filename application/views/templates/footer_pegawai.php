@@ -23,8 +23,8 @@
             html: 'Anda yakin ingin menghapus <strong>' + namaSurat + '</strong>?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#e53e3e',
-            cancelButtonColor: '#a0aec0',
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#f87171',
             confirmButtonText: 'Ya, Hapus!',
             cancelButtonText: 'Batal'
         }).then((result) => {

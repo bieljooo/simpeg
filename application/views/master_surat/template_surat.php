@@ -41,13 +41,13 @@
                             </td>
                             <td class="text-center">
                                 <div class="table-action-group">
-                                    <a href="<?= site_url('master_surat/upload/' . $item->id) ?>" class="btn btn-secondary btn-sm" title="Upload">
+                                    <a href="<?= site_url('master_surat/upload/' . $item->id) ?>" class="btn btn-action-upload btn-sm" title="Upload">
                                         <iconify-icon icon="mdi:upload-outline"></iconify-icon>
                                     </a>
-                                    <a href="<?= site_url('master_surat/edit/' . $item->id) ?>" class="btn btn-info btn-sm" title="Edit">
+                                    <a href="<?= site_url('master_surat/edit/' . $item->id) ?>" class="btn btn-action-edit btn-sm" title="Edit">
                                         <iconify-icon icon="mdi:pencil-outline"></iconify-icon>
                                     </a>
-                                    <button type="button" onclick="confirmDelete('<?= site_url('master_surat/delete/' . $item->id) ?>', '<?= addslashes($item->nama_template) ?>')" class="btn btn-danger btn-sm" title="Hapus">
+                                    <button type="button" onclick="confirmDelete('<?= site_url('master_surat/delete/' . $item->id) ?>', '<?= addslashes($item->nama_template) ?>')" class="btn btn-action-delete btn-sm" title="Hapus">
                                         <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>
                                     </button>
                                 </div>

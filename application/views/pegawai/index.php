@@ -55,14 +55,14 @@
                             <td><?= $p->tingkat_pendidikan ?></td>
                             <td class="text-center">
                                 <div class="table-action-group">
-                                    <a href="<?= site_url('pegawai/detail/' . $p->nip) ?>" class="btn btn-success btn-sm" title="Detail">
+                                    <a href="<?= site_url('pegawai/detail/' . $p->nip) ?>" class="btn btn-action-read btn-sm" title="Detail">
                                         <iconify-icon icon="mdi:eye-outline"></iconify-icon>
                                     </a>
                                     <?php if (!$is_kasubag): ?>
-                                    <a href="<?= site_url('pegawai/edit/' . $p->nip) ?>" class="btn btn-info btn-sm" title="Edit">
+                                    <a href="<?= site_url('pegawai/edit/' . $p->nip) ?>" class="btn btn-action-edit btn-sm" title="Edit">
                                         <iconify-icon icon="mdi:pencil-outline"></iconify-icon>
                                     </a>
-                                    <button onclick="confirmDelete('<?= site_url('pegawai/hapus/' . $p->nip) ?>', '<?= addslashes($p->nama) ?>')" class="btn btn-danger btn-sm" title="Hapus">
+                                    <button onclick="confirmDelete('<?= site_url('pegawai/hapus/' . $p->nip) ?>', '<?= addslashes($p->nama) ?>')" class="btn btn-action-delete btn-sm" title="Hapus">
                                         <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>
                                     </button>
                                     <?php endif; ?>

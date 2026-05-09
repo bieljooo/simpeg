@@ -2,7 +2,7 @@
 <html lang="id">
 
 <?php $shell_css_version = @filemtime(FCPATH . 'assets/css/simpeg-shell.css') ?: time(); ?>
-<?php $login_bg_version = @filemtime(FCPATH . 'assets/images/tomohonberdayasaing.png') ?: time(); ?>
+<?php $login_bg_version = @filemtime(FCPATH . 'assets/images/tomohongradient.png') ?: time(); ?>
 
 <head>
     <meta charset="utf-8">
@@ -26,7 +26,7 @@
             justify-content: center;
             background:
                 linear-gradient(180deg, rgba(129, 33, 23, 0.38) 0%, rgba(90, 34, 26, 0.18) 18%, rgba(17, 25, 38, 0.24) 100%),
-                url('<?= base_url('assets/images/tomohonberdayasaing.png?v=' . $login_bg_version) ?>') center center / cover no-repeat;
+                url('<?= base_url('assets/images/tomohongradient.png?v=' . $login_bg_version) ?>') center center / cover no-repeat;
         }
 
         body.auth-screen::before {
@@ -198,17 +198,17 @@
             margin-top: 4px;
             border-radius: 999px;
             border: 0;
-            background: linear-gradient(90deg, #6d5efc 0%, #5e4ff2 100%);
+            background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
             color: #ffffff;
             font-family: 'Sora', sans-serif;
             font-size: 12px;
             font-weight: 600;
-            box-shadow: 0 14px 28px rgba(109, 94, 252, 0.26);
+            box-shadow: 0 14px 28px rgba(220, 38, 38, 0.26);
         }
 
         body.auth-screen .auth-submit:hover,
         body.auth-screen .auth-submit:focus {
-            background: linear-gradient(90deg, #5e4ff2 0%, #5243eb 100%);
+            background: linear-gradient(90deg, #b91c1c 0%, #991b1b 100%);
             color: #ffffff;
         }
 

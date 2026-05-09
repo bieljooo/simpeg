@@ -38,7 +38,7 @@ $initial_letter = strtoupper(substr($account_name, 0, 1));
                 </div>
                 <div>
                     <div class="settings-photo-actions">
-                        <label class="btn btn-secondary btn-sm mb-0">
+                        <label class="btn btn-secondary btn-sm mb-0 settings-upload-btn">
                             <iconify-icon icon="mdi:upload-outline"></iconify-icon>
                             <span>Unggah Foto Baru</span>
                             <input type="file" name="foto_profil" id="foto_profil" accept=".jpg,.jpeg,.png,.gif" hidden>
@@ -334,8 +334,8 @@ $initial_letter = strtoupper(substr($account_name, 0, 1));
                     showCancelButton: true,
                     confirmButtonText: 'Ya, Ubah Password',
                     cancelButtonText: 'Batal',
-                    confirmButtonColor: '#5b6475',
-                    cancelButtonColor: '#9ca3af'
+                    confirmButtonColor: '#dc2626',
+                    cancelButtonColor: '#f87171'
                 }).then(function(result) {
                     if (result.isConfirmed) {
                         form.dataset.confirmed = '1';

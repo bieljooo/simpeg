@@ -15,7 +15,7 @@
         <h3><iconify-icon icon="mdi:account-outline" class="mr-2"></iconify-icon>Detail Pegawai</h3>
         <div>
             <?php if (!$is_kasubag): ?>
-            <a href="<?= site_url('pegawai/edit/'.$p->nip) ?>" class="btn btn-warning btn-sm">
+            <a href="<?= site_url('pegawai/edit/'.$p->nip) ?>" class="btn btn-action-edit btn-sm">
                 <iconify-icon icon="mdi:pencil-outline" class="mr-1"></iconify-icon> Edit
             </a>
             <?php endif; ?>
