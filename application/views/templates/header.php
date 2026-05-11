@@ -38,8 +38,9 @@
     $profile_position = $this->session->userdata('foto_posisi') ?: 'center center';
     $is_petugas_dashboard = ($this->uri->segment(1) === 'dashboard_petugas');
     $is_draft_verifikasi = ($this->uri->segment(1) === 'pegawai' && $this->uri->segment(2) === 'draft_verifikasi');
-    $is_pegawai_data = (($this->uri->segment(1) === 'pegawai' || $this->uri->segment(1) === '') && $this->uri->segment(2) !== 'draft_verifikasi' && !$is_petugas_dashboard);
-    $is_petugas_pegawai_group = ($role === 'petugas' && ($is_pegawai_data || $is_draft_verifikasi));
+    $is_akun_pegawai = ($this->uri->segment(1) === 'pegawai' && $this->uri->segment(2) === 'akun_pegawai');
+    $is_pegawai_data = (($this->uri->segment(1) === 'pegawai' || $this->uri->segment(1) === '') && !in_array($this->uri->segment(2), array('draft_verifikasi', 'akun_pegawai'), TRUE) && !$is_petugas_dashboard);
+    $is_petugas_pegawai_group = ($role === 'petugas' && ($is_pegawai_data || $is_draft_verifikasi || $is_akun_pegawai));
     $master_surat_segments = array('surat', 'master_surat');
     $is_master_surat_group = ($role === 'petugas' && in_array($this->uri->segment(1), $master_surat_segments, TRUE));
     $is_surat_masuk = ($this->uri->segment(1) === 'surat');
@@ -72,7 +73,7 @@
                     </li>
                     <?php endif; ?>
                     <?php if ($role === 'petugas'): ?>
-                    <li data-menu-search="pegawai data pegawai draft verifikasi">
+                    <li data-menu-search="master data pegawai data pegawai akun pegawai draft verifikasi">
                         <a
                             class="nav-dropdown-toggle <?= $is_petugas_pegawai_group ? 'active' : '' ?>"
                             data-toggle="collapse"
@@ -81,7 +82,7 @@
                             aria-expanded="<?= $is_petugas_pegawai_group ? 'true' : 'false' ?>"
                             aria-controls="menuPetugasPegawai">
                             <iconify-icon icon="mdi:account-group-outline" class="app-icon"></iconify-icon>
-                            <span>Data Pegawai</span>
+                            <span>Master Data</span>
                             <iconify-icon icon="mdi:chevron-down" class="menu-caret"></iconify-icon>
                         </a>
                         <div class="collapse<?= $is_petugas_pegawai_group ? ' show' : '' ?>" id="menuPetugasPegawai">
@@ -90,6 +91,12 @@
                                     <a href="<?= site_url('pegawai') ?>" class="<?= $is_pegawai_data ? 'active' : '' ?>">
                                         <iconify-icon icon="mdi:account-multiple-outline" class="app-icon"></iconify-icon>
                                         <span>Data Pegawai</span>
+                                    </a>
+                                </li>
+                                <li data-menu-search="akun pegawai">
+                                    <a href="<?= site_url('pegawai/akun_pegawai') ?>" class="<?= $is_akun_pegawai ? 'active' : '' ?>">
+                                        <iconify-icon icon="mdi:account-key-outline" class="app-icon"></iconify-icon>
+                                        <span>Akun Pegawai</span>
                                     </a>
                                 </li>
                                 <li data-menu-search="draft verifikasi">

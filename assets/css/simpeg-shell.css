@@ -306,18 +306,28 @@ html.theme-dark .brand-logo-box {
     transform: translateY(-1px);
 }
 
-.nav-menu li a.active,
-.nav-menu .nav-dropdown-toggle[aria-expanded="true"],
-.nav-menu .nav-dropdown-toggle.active {
+.nav-menu li a.active {
     color: #ffffff;
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
     box-shadow: none;
 }
 
-.nav-menu li a.active:hover,
+.nav-menu li a.active:hover {
+    color: #ffffff;
+}
+
+.nav-menu .nav-dropdown-toggle[aria-expanded="true"],
+.nav-menu .nav-dropdown-toggle.active {
+    color: var(--heading);
+    background: transparent;
+    box-shadow: none;
+}
+
 .nav-menu .nav-dropdown-toggle[aria-expanded="true"]:hover,
 .nav-menu .nav-dropdown-toggle.active:hover {
-    color: #ffffff;
+    color: var(--heading);
+    background: transparent;
+    box-shadow: none;
 }
 
 .nav-menu .app-icon {
@@ -956,6 +966,32 @@ textarea.form-control {
     color: #ffffff;
 }
 
+.btn-action-approve {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+}
+
+.btn-action-approve:hover,
+.btn-action-approve:focus {
+    background: #15803d;
+    border-color: #15803d;
+    color: #ffffff;
+}
+
+.btn-action-save {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+}
+
+.btn-action-save:hover,
+.btn-action-save:focus {
+    background: #15803d;
+    border-color: #15803d;
+    color: #ffffff;
+}
+
 .table-action-group {
     display: inline-flex;
     align-items: center;
@@ -1288,10 +1324,20 @@ html.theme-dark .toggle-btn {
     background: rgba(220, 38, 38, 0.14);
 }
 
-html.theme-dark .nav-menu li a.active,
+html.theme-dark .nav-menu li a.active {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: #ffffff;
+}
+
 html.theme-dark .nav-menu .nav-dropdown-toggle[aria-expanded="true"],
 html.theme-dark .nav-menu .nav-dropdown-toggle.active {
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    background: transparent;
+    color: #ffffff;
+}
+
+html.theme-dark .nav-menu .nav-dropdown-toggle[aria-expanded="true"]:hover,
+html.theme-dark .nav-menu .nav-dropdown-toggle.active:hover {
+    background: transparent;
     color: #ffffff;
 }
 

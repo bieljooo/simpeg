@@ -93,6 +93,75 @@ class Pegawai extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function akun_pegawai()
+    {
+        $this->guard_petugas_only_role('Menu Akun Pegawai hanya dapat diakses oleh role Petugas.');
+
+        $data['title'] = 'Akun Pegawai';
+        $data['akun_pegawai'] = $this->Pegawai_model->get_all_accounts();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('pegawai/akun_pegawai', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function ubah_password_akun($nip)
+    {
+        $this->guard_petugas_only_role('Menu Akun Pegawai hanya dapat diakses oleh role Petugas.');
+
+        $data['title'] = 'Update Password Akun Pegawai';
+        $data['akun'] = $this->Pegawai_model->get_account_by_nip($nip);
+
+        if (empty($data['akun'])) {
+            show_404();
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('pegawai/ubah_password_akun', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function simpan_password_akun($nip)
+    {
+        $this->guard_petugas_only_role('Menu Akun Pegawai hanya dapat diakses oleh role Petugas.');
+
+        $akun = $this->Pegawai_model->get_account_by_nip($nip);
+
+        if (empty($akun)) {
+            show_404();
+        }
+
+        $new_password = trim((string) $this->input->post('new_password', TRUE));
+        $confirm_password = trim((string) $this->input->post('confirm_password', TRUE));
+
+        if ($new_password === '' || $confirm_password === '') {
+            $this->session->set_flashdata('error', 'Password baru dan konfirmasi password wajib diisi.');
+            redirect('pegawai/ubah_password_akun/' . $nip);
+            return;
+        }
+
+        if (strlen($new_password) < 8 || !preg_match('/[A-Za-z]/', $new_password) || !preg_match('/[0-9]/', $new_password)) {
+            $this->session->set_flashdata('error', 'Password baru minimal 8 karakter dan harus mengandung huruf serta angka.');
+            redirect('pegawai/ubah_password_akun/' . $nip);
+            return;
+        }
+
+        if ($new_password !== $confirm_password) {
+            $this->session->set_flashdata('error', 'Konfirmasi password baru tidak cocok.');
+            redirect('pegawai/ubah_password_akun/' . $nip);
+            return;
+        }
+
+        if (!$this->Pegawai_model->update_account_password($nip, password_hash($new_password, PASSWORD_DEFAULT))) {
+            $this->session->set_flashdata('error', 'Password akun pegawai gagal diperbarui.');
+            redirect('pegawai/ubah_password_akun/' . $nip);
+            return;
+        }
+
+        $this->session->set_flashdata('success', 'Password akun pegawai berhasil diperbarui.');
+        redirect('pegawai/akun_pegawai');
+    }
+
     public function edit($nip)
     {
         $this->guard_read_only_role();
@@ -186,8 +255,13 @@ class Pegawai extends CI_Controller {
 
     private function guard_draft_verification_role()
     {
+        $this->guard_petugas_only_role('Menu Draft Verifikasi hanya dapat diakses oleh role Petugas.');
+    }
+
+    private function guard_petugas_only_role($message)
+    {
         if ($this->session->userdata('role') !== 'petugas') {
-            $this->session->set_flashdata('error', 'Menu Draft Verifikasi hanya dapat diakses oleh role Petugas.');
+            $this->session->set_flashdata('error', $message);
             redirect('pegawai');
             exit;
         }

@@ -75,7 +75,7 @@
                                         <iconify-icon icon="mdi:eye-outline"></iconify-icon>
                                     </a>
                                     <form id="approve-form-<?= $item->id ?>" action="<?= site_url('persetujuan_pegawai/setujui/' . $item->id) ?>" method="POST" style="display:inline">
-                                        <button type="button" onclick="confirmApproval('approve-form-<?= $item->id ?>', '<?= addslashes($item->nama) ?>')" class="btn btn-success btn-sm" title="Setujui">
+                                        <button type="button" onclick="confirmApproval('approve-form-<?= $item->id ?>', '<?= addslashes($item->nama) ?>')" class="btn btn-action-approve btn-sm" title="Setujui">
                                             <iconify-icon icon="mdi:check" class="mr-1"></iconify-icon> Setujui
                                         </button>
                                     </form>

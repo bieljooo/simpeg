@@ -24,6 +24,34 @@ class Pegawai_model extends CI_Model {
         return $this->db->get()->row();
     }
 
+    public function get_all_accounts()
+    {
+        return $this->db
+            ->select('nama, nip')
+            ->from('pegawai')
+            ->order_by('created_at', 'ASC')
+            ->order_by('nip', 'ASC')
+            ->get()
+            ->result();
+    }
+
+    public function get_account_by_nip($nip)
+    {
+        return $this->db
+            ->select('nama, nip, password')
+            ->from('pegawai')
+            ->where('nip', $nip)
+            ->get()
+            ->row();
+    }
+
+    public function update_account_password($nip, $password_hash)
+    {
+        return $this->db
+            ->where('nip', $nip)
+            ->update('pegawai', array('password' => $password_hash));
+    }
+
     public function insert($pegawai, $pribadi, $drh)
     {
         $this->db->trans_start();

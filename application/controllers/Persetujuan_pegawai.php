@@ -60,7 +60,7 @@ class Persetujuan_pegawai extends CI_Controller {
         $approved = $this->Pegawai_model->approve_pending(
             $id,
             $this->session->userdata('nip'),
-            password_hash('password123', PASSWORD_DEFAULT)
+            password_hash(DEFAULT_PEGAWAI_PASSWORD, PASSWORD_DEFAULT)
         );
 
         if (!$approved) {
@@ -69,7 +69,7 @@ class Persetujuan_pegawai extends CI_Controller {
             return;
         }
 
-        $this->session->set_flashdata('success', 'Data pegawai disetujui. Pegawai baru dapat login dengan password default password123.');
+        $this->session->set_flashdata('success', 'Data pegawai disetujui. Pegawai baru dapat login dengan password default ' . DEFAULT_PEGAWAI_PASSWORD . '.');
         redirect('persetujuan_pegawai');
     }
 

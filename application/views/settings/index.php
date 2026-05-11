@@ -86,7 +86,7 @@ $initial_letter = strtoupper(substr($account_name, 0, 1));
             </div>
 
             <div class="settings-actions">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-action-save">
                     <iconify-icon icon="lucide:save"></iconify-icon>
                     <span>Simpan Perubahan</span>
                 </button>
